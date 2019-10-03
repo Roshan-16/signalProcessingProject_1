@@ -17,6 +17,7 @@ w = 2*np.pi/lt
 
 plt.subplot(311)
 y = 75*np.sin(w*250*t) + 100*np.sin(w*5*t) + 15*np.cos(w*210*t) + 50*np.cos(w*400*t)
+plt.title('Input signal')
 plt.plot(t,y)
 
 freq =fft.fftfreq(fs)*fs
@@ -26,8 +27,13 @@ fft_vals = np.array(fft.fft(y))
 norm_fft = (2.0/fs)*np.abs(fft_vals)
 
 plt.subplot(312)
+plt.title('Frequency plot')
+plt.xlabel('Frequency')
+plt.ylabel('Amplitude')
 plt.plot(freq[mask],norm_fft[mask])
 
 plt.subplot(313)
+plt.title('Reconstructed signal')
 plt.plot(t,fft.ifft(fft_vals))
+plt.tight_layout()
 plt.show()
